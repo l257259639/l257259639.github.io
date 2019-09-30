@@ -1,25 +1,26 @@
 <html>
 <body>
 <script src="jquery-3.4.1.js"></script>
-<script>
-    $(function(){
-        $.get("./data.json",function(result){
-            $("#myname").text(result.myname);
-            $("#mynumber").text(result.mynumber);
-        });
-    })
-    $("#btn").click(function(){
-        $.get("./data1.json",function(result){
-            $("#myname").text(result.myname);
-            $("#mynumber").text(result.mynumber);
-        });
-    })
-</script>
+
 <h1>我叫<span id="myname"></span></h1>
     <p>我的学号是<span id="mynumber"></span>
     <button id="btn">下一个</button></p>
     
     <img id="logo" src="1234.JPG" style="border-radius: 10px 20px 40px 80px"/>
     
+    <script>
+        $(function(){
+            $.get("./data.json",function(result){
+                $("#myname").text(result.myname);
+                $("#mynumber").text(result.mynumber);
+            });
+        })
+        $("#btn").click(function(){
+            $.get("./data1.json",function(result){
+                $("#myname").text(result.myname);
+                $("#mynumber").text(result.mynumber);
+            });
+        })
+    </script>
 </body>
 </html>
