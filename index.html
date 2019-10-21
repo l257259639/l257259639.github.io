@@ -10,13 +10,15 @@
     
     <script>
         $(function(){
-            $.get("./data.json",function(result){
+            var callback=function(result){
                 $("#myname").text(result.myname);
                 $("#mynumber").text(result.mynumber);
+            }
+            $.get("http://10.30.201.97:8585/data.json",callback);
+                
             });
-        })
         $("#btn").click(function(){
-            $.get("./data1.json",function(result){
+            $.get("http://10.30.201.97:8585/data.json",function(result){
                 $("#myname").text(result.myname);
                 $("#mynumber").text(result.mynumber);
             });
