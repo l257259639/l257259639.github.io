@@ -3,25 +3,43 @@
 <script src="jquery-3.4.1.js"></script>
 
 <h1>我叫<span id="myname"></span></h1>
-    <p>我的学号是<span id="mynumber"></span>
-    <button id="btn">下一个</button></p>
-    
+    <p>我的学号是<span id="mynumber"></span></p>
+    <a id="btnlogin" href="login.html">去登录</a>
+    <a id="btnlogout" href="#">去注销</a></p>
     <img id="logo" src="1234.JPG" style="border-radius: 10px 20px 40px 80px"/>
     
     <script>
         $(function(){
             var callback=function(result){
-                $("#myname").text(result.myname);
-                $("#mynumber").text(result.mynumber);
+                if(result.myname){
+                    $("#myname").text(result.myname);
+                    $("#mynumber").text(result.mynumber);
+                    $("#btnlogin").hide();
+                }else{
+                    $("#btnlogout").hide();
+                }
             }
-            $.get("http://10.30.201.97:8585/data.json",callback);
-                
+            $.ajax({
+                type:"POST",
+                xhrFields:{
+                    withCredentials:true
+                },
+                url:"http://127.0.0.1:8585/userinfo",
+                contentType:'application/json',
+                //data:'sn=18002090209$name=DLL',
+                success:callback
+            })
+            //$.post("http://10.30.201.98:8585/data.json",callback);
+            $("#btnlogout").click(function(){
+            $.ajax({
+                type:"GET",
+                xhrFields:{withCredentials:true},
+                url:"http://127.0.0.1:8585/logout",
+                success:function(){
+                    location.href="index.html";
+                }
             });
-        $("#btn").click(function(){
-            $.get("http://10.30.201.97:8585/data.json",function(result){
-                $("#myname").text(result.myname);
-                $("#mynumber").text(result.mynumber);
-            });
+        })
         })
     </script>
 </body>
